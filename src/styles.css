@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Values read from Figma palette and spacing variables. */
+@theme {
+  --font-sans: 'Noto Sans Thai', sans-serif;
+  --color-canvas: #f6faf9;
+  --color-ink: #132d2c;
+  --color-muted: #49635f;
+  --color-primary: #075e57;
+  --color-primary-hover: #08796c;
+  --color-accent: #ecf9f5;
+  --color-accent-strong: #d7f3ec;
+  --color-border: #d5e0dc;
+  --color-error: #a72d3b;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+@layer base {
+  body { margin: 0; min-width: 320px; font-family: var(--font-sans); }
+  button { cursor: pointer; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid var(--color-primary-hover); outline-offset: 4px; }
+}
+@layer components {
+  .actor-card { display: flex; flex-direction: column; text-align: left; border: 1px solid var(--color-border); border-radius: 20px; background: white; padding: 24px; transition: border-color .15s, box-shadow .15s; }
+  .actor-card > span:nth-last-child(2) { margin-top: auto; padding-top: 16px; }
+  .actor-card:hover { border-color: var(--color-primary); box-shadow: 0 6px 20px #075e570a; }
+  .actor-card-selected { border-color: var(--color-primary); box-shadow: 0 0 0 2px var(--color-primary); }
+  .actor-number { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--color-accent-strong); color: var(--color-primary); font-weight: 600; font-size: 20px; }
+  .skip-link { position: absolute; left: 16px; top: -100px; z-index: 10; background: white; padding: 16px; border-radius: 14px; }
+  .skip-link:focus { top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
