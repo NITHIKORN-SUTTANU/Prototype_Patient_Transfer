@@ -17,9 +17,10 @@ export function LandingPage() {
     </section>
     <section aria-label="สถานะการสาธิต" aria-live="polite" className="mt-6 rounded-[20px] border border-border bg-white p-6">
       <h2 className="text-lg font-semibold text-primary">{selected ? `เลือกแล้ว: ${selected.name}` : 'พร้อมสำหรับการสาธิต'}</h2>
-      <p className="mt-2 text-base leading-7 text-muted">{selected?.id === 'ACT-01' ? 'พร้อมเริ่มจองรถและติดตามสถานะด้วยข้อมูลจำลอง' : selected?.id === 'ACT-02' ? 'ตรวจสอบคำขอจาก ACT-01 จัดรถและคนขับ และติดตามงานรับส่ง' : selected ? 'บันทึกบทบาทที่เลือกแล้ว หน้าจอของแต่ละบทบาทจะพัฒนาในขั้นตอนถัดไป' : 'เลือกบทบาทเพื่อเริ่มการสาธิต'}</p>
+      <p className="mt-2 text-base leading-7 text-muted">{selected?.id === 'ACT-01' ? 'พร้อมเริ่มจองรถและติดตามสถานะด้วยข้อมูลจำลอง' : selected?.id === 'ACT-02' ? 'ตรวจสอบคำขอจาก ACT-01 จัดรถและคนขับ และติดตามงานรับส่ง' : selected?.id === 'ACT-03' ? 'ดูงานที่ได้รับมอบหมายและอัปเดตสถานะการเดินทางด้วยข้อมูลจำลอง' : selected ? 'บันทึกบทบาทที่เลือกแล้ว หน้าจอของแต่ละบทบาทจะพัฒนาในขั้นตอนถัดไป' : 'เลือกบทบาทเพื่อเริ่มการสาธิต'}</p>
       {selected?.id === 'ACT-01' && <Link to="/booking" className="mt-4 flex min-h-14 items-center justify-center rounded-xl bg-primary px-5 font-semibold text-white">เข้าสู่หน้าจองรถ →</Link>}
       {selected?.id === 'ACT-02' && <Link to="/dispatcher" className="mt-4 flex min-h-14 items-center justify-center rounded-xl bg-primary px-5 font-semibold text-white">เข้าสู่หน้าจัดการงานรับส่ง →</Link>}
+      {selected?.id === 'ACT-03' && <Link to="/driver" className="mt-4 flex min-h-14 items-center justify-center rounded-xl bg-primary px-5 font-semibold text-white">เข้าสู่หน้างานคนขับ →</Link>}
       {params.has('actor') && params.get('actor') !== state.selectedActor && <p className="mt-2 text-sm text-muted">โปรดเลือกบทบาทจากตัวเลือกด้านบน</p>}
       {!storageAvailable && <p role="alert" className="mt-3 text-error">เบราว์เซอร์ไม่อนุญาตให้บันทึกข้อมูล บทบาทที่เลือกจะคงอยู่เฉพาะการเปิดหน้านี้</p>}
       {selected && <button type="button" className="mt-4 min-h-14 rounded-xl border border-border px-5 font-semibold text-primary hover:bg-accent" onClick={() => { demoStore.reset(); setParams({}, { replace: true }) }}>เริ่มการสาธิตใหม่</button>}
