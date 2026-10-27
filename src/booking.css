@@ -107,6 +107,9 @@
 .booking-done { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: white; background: var(--color-primary); }
 .booking-timeline .booking-timeline-clock { display: grid; place-items: center; width: 44px; height: 44px; margin: 0; border: 2px solid #e8c779; border-radius: 50%; background: #d99a20; box-shadow: inset 0 0 0 4px #fff4d6; }
 .booking-future { width: 24px; height: 24px; border: 2px solid var(--color-border); border-radius: 50%; }
+.booking-timeline.approved .booking-current { background: var(--color-accent); }
+.booking-timeline.approved .booking-current h3, .booking-timeline.approved .booking-current p { color: var(--color-primary); }
+.booking-timeline.approved .booking-timeline-clock { background: var(--color-primary); border-color: var(--color-primary); box-shadow: inset 0 0 0 4px var(--color-accent); color: white; }
 .booking-list-title { display: flex; align-items: center; justify-content: space-between; font-size: 16px; }
 .booking-list-title h2 { font-size: 19px; font-weight: 600; }
 .booking-list-card { text-align: left; padding: 18px; background: white; border: 1px solid var(--color-border); border-radius: 18px; }

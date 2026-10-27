@@ -1,5 +1,7 @@
 # ACT-01 booking implementation — 26 October 2026
 
+Subsequent integration: [ACT-02 Dispatcher](ACT-02-IMPLEMENTATION.md) now updates these same bookings. Approved/rejected statuses, rejection reasons and assigned demo pickup times are reflected in ACT-01, including cross-tab updates. The original implementation boundary below describes the earlier ACT-01-only delivery.
+
 Source: [ACT-01 Figma file](https://www.figma.com/design/umrYKEkwmIdLAq1g1IdLjV). Read through Figma MCP metadata, design context, screenshots and read-only Plugin API inspection. No Figma modifications.
 
 Open `/booking`, or select ACT-01 on the existing actor chooser and follow “เข้าสู่หน้าจองรถ”. Use fictional data only.

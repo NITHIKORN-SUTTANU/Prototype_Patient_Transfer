@@ -18,6 +18,17 @@ function readState(): DemoState {
 }
 let state = readState()
 function emit() { listeners.forEach(listener => listener()) }
+function latestState(): DemoState {
+  if (!storageAvailable) return state
+  try {
+    const raw = localStorage.getItem(KEY)
+    if (raw) {
+      const parsed: unknown = JSON.parse(raw)
+      if (isDemoState(parsed)) return parsed
+    }
+  } catch { storageAvailable = false }
+  return state
+}
 function persist(next: DemoState) {
   state = next
   try { localStorage.setItem(KEY, JSON.stringify(state)); storageAvailable = true }
@@ -34,7 +45,9 @@ export const demoStore = {
   selectActor: (selectedActor: ActorId) => persist({ ...state, selectedActor }),
   reset: () => persist(createSeedState()),
   update: (update: (current: DemoState) => DemoState) => {
-    const next = update(state)
+    // Recheck persisted data even before another tab's storage event arrives.
+    // Preserve the existing in-memory fallback when storage is unavailable.
+    const next = update(latestState())
     if (!isDemoState(next)) throw new Error('Invalid demo state')
     persist(next)
   },

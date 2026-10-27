@@ -3,7 +3,17 @@ import type { BookingDetails } from '../services/booking'
 
 // Shared domain contracts for the next implementation steps. No patient records are seeded yet.
 export type BookingStatus = 'pending' | 'approved' | 'rejected' | 'in_transit' | 'completed'
-export interface Booking { id: string; patientName: string; appointmentAt: string; status: BookingStatus; vehicleId?: string; driverId?: string; details?: BookingDetails; createdAt?: string }
+export interface DemoSchedule {
+  departureAt: string
+  pickupAt: string
+  arrivalAt: string
+  endsAt: string
+  centerToPickupMinutes: number
+  pickupToHospitalMinutes: number
+  preparationMinutes: 20
+  calculation: 'demo-manual-v1'
+}
+export interface Booking { id: string; patientName: string; appointmentAt: string; status: BookingStatus; vehicleId?: string; driverId?: string; details?: BookingDetails; createdAt?: string; reviewedAt?: string; rejectionReason?: string; assignedAt?: string; schedule?: DemoSchedule }
 export interface Vehicle { id: string; label: string; active: boolean }
 export interface Driver { id: string; name: string; active: boolean }
 export interface DemoState {
@@ -12,6 +22,7 @@ export interface DemoState {
   bookings: Booking[]
   vehicles: Vehicle[]
   drivers: Driver[]
+  dispatcherResourcesInitialized?: boolean
 }
 export function createSeedState(): DemoState {
   return { version: 1, selectedActor: null, bookings: [], vehicles: [], drivers: [] }
